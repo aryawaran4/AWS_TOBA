@@ -1,0 +1,105 @@
+    <mat-drawer-container class="h-full" autosize>
+      
+        <mat-drawer #drawer mode="side" class="w-72" style="background-color: #fafafa; color: #2A3071;">
+
+          <div class="w-4/5 mx-auto">
+            <div class="py-2">
+              <a href="" class="">
+                <div class="py-4">
+                  <div class="flex flex-col items-center">
+                    <p class="w-20 h-20 rounded-full overflow-hidden shadow-md">
+                      <img class="h-full w-full" src="https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29sb3IlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&w=1000&q=80" alt="">
+                    </p>
+                    <p class="font-semibold text-lg mt-3">Admin IRM</p>
+                    <p class="text-sm">Administrator</p>
+                  </div>
+                </div>                
+              </a>
+            </div>
+  
+            <div class="">
+              <a
+                *ngFor="let link of links"
+                mat-button
+                [routerLink]="link.href"
+                [title]="link.text"
+                [ngStyle]="link.href === currentUrl ? {'background-color': '#2A3071', 'color': '#fff'} : {'background-color:hover': '#2A3071', 'color:hover': '#fff'} "
+                class="w-full"
+              >
+              <div class="py-3 px-1 mx-auto rounded-sm text-left">
+                <mat-icon                  
+                class="material-icons-outlined text-2xl mr-2"
+                >{{link.icon}}</mat-icon> 
+                <span class="font-medium text-sm relative bottom-0.5">{{link.text}}</span>
+              </div>
+              </a>
+              <a
+                mat-button
+                (click)="logout()"
+                [title]="'log out'"
+                class="w-full hover:bg-my-blue hover:text-white"
+              >
+              <div class="py-3 px-1 mx-auto rounded-sm text-left">
+                <mat-icon                  
+                class="material-icons-outlined text-2xl mr-2"
+                >logout</mat-icon> 
+                <span class="font-medium text-sm relative bottom-0.5">log out</span>
+              </div>
+              </a>
+            </div>
+          </div>
+
+        </mat-drawer>
+    
+
+    <mat-drawer-content>
+            <mat-toolbar class="flex justify-between items-center"
+            style="background-color: #2A3071; color: #fafafa; height: 90px;">
+                <div class="text-center flex gap-4 items-center">
+                  
+                  <div class="bg-my-blue flex">
+                    <div class="flex items-center gap-4 py-3">
+                      <div class="w-14 h-auto p-2 bg-white rounded-md">
+                        <img class="w-full h-full" src="/assets/Logo-BMKG-new.png" alt="logo">
+                      </div>
+                      <p class="text-white font-semibold text-2xl">AWS TOBA</p>
+                    </div>
+                    <button mat-button (click)="drawer.toggle()" class="top-0.5">
+                      <span class="text-2xl"><mat-icon>menu</mat-icon></span>
+                    </button>
+                  </div>
+                  
+                  <!-- <div class="text-xs relative top-1.5 flex items-center gap-2">
+                    <p class="relative bottom-1"><mat-icon>map</mat-icon></p>
+                    <mat-form-field appearance="outline">
+                      <mat-select placeholder="Station List" class="text-my-blue">
+                        <mat-option value="one">First option</mat-option>
+                        <mat-option value="two">Second option</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div> -->
+
+                </div>
+
+                <div class="flex gap-5 items-center">
+                  <div class="text-xs relative top-1.5 flex items-center gap-2">
+                    <p class="relative bottom-1"><mat-icon>map</mat-icon></p>
+                    <mat-form-field appearance="outline">
+                      <mat-select placeholder="Station List" class="text-my-blue">
+                        <mat-option value="one">First option</mat-option>
+                        <mat-option value="two">Second option</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <p class="text-lg font-semibold"> <span class="font-light"><mat-icon>drafts</mat-icon></span></p>
+                  <p class="text-lg font-semibold"> <span class="font-light"><mat-icon>notifications</mat-icon></span></p>
+                  <p class="text-lg font-semibold"> <span class="font-light"><mat-icon>settings</mat-icon></span></p>
+                </div>  
+            </mat-toolbar>
+
+          <router-outlet></router-outlet>
+          
+    </mat-drawer-content>
+
+  </mat-drawer-container>
+  

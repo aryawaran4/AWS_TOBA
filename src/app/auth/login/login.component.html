@@ -1,0 +1,41 @@
+<div class="text-my-blue grid grid-cols-2 h-full">
+    <div id="container" class="m-auto">
+  
+      <div class="flex items-center gap-4">
+        <div>
+          <p class="font-light text-2xl">AWS <span class="text-2xl font-bold text-my-blue/75 mb-2">TOBA</span></p>          
+          <p class="text-xs font-bold text-my-blue/75">POWERED BY BMKG<span></span></p>
+        </div>
+      </div>
+  
+      <h1 class="text-5xl font-extrabold mt-7">Log in.</h1>
+  
+      <form action="" [formGroup]="formLogin" class="flex flex-col py-4">
+  
+        <div class="py-4">
+            <div>
+                <p>Username</p>
+                <mat-form-field appearance="outline" class="w-96">
+                  <input required matInput type="text" formControlName="name" placeholder="Username">
+                </mat-form-field>
+            </div>
+            <div>
+                <p>Password</p>
+                <mat-form-field appearance="outline" class="w-96 block">
+                  <input required matInput type="password" formControlName="password" placeholder="Password">
+                </mat-form-field>
+            </div>
+        </div>
+  
+        <div class="text-center">
+          <div class="w-96 bg-my-blue rounded-md overflow-hidden cursor-pointer" (click)="loginUser()">
+              <button mat-button><p class="font-semibold text-white">Log in</p></button>
+          </div>
+        </div>
+  
+       </form>
+    </div>
+  
+      <div class="w-full p-4 shadow-md text-center h-full bg-my-blue">
+      </div>
+  </div>
