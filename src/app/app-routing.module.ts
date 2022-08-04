@@ -21,6 +21,11 @@ const routes: Routes = [
     loadChildren: () => import('./marine-display/marine-display.module').then(m => m.MarineDisplayModule),
     // canLoad:[AuthCoreGuard]
   },
+  { 
+    path: 'analytics', 
+    loadChildren: () => import('./analytics/analytics.module').then(m => m.AnalyticsModule),
+    // canLoad:[AuthCoreGuard]
+  },
 ];
 
 @NgModule({

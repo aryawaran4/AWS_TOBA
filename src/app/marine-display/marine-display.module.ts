@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MarineDisplayComponent } from './marine-display.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SidebarComponent } from '../shared/sidebar/sidebar.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatIconModule } from '@angular/material/icon';
 
 const routes: Routes = [{ path: '', component: SidebarComponent, children:[
   {
@@ -16,6 +18,8 @@ const routes: Routes = [{ path: '', component: SidebarComponent, children:[
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    MatSlideToggleModule,
+    MatIconModule
   ]
 })
 export class MarineDisplayModule { }

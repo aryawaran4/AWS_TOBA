@@ -18,7 +18,7 @@ type NavLink = {
     {
       text: 'Analytics',
       icon: 'query_stats',
-      href: '/',
+      href: '/analytics',
     },
     {
       text: 'Export Data',
