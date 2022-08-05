@@ -29,8 +29,8 @@ export class WaterLevelComponent implements OnInit {
     legend: {
       position: 'top'
     },
-    width: '1280',
-    height: '600'
+    // width: '1280',
+    // height: '600'
   };
 
   constructor() { }

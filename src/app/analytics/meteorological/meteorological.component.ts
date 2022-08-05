@@ -29,8 +29,6 @@ export class MeteorologicalComponent implements OnInit {
     legend: {
       position: 'top'
     },
-    width: '1280',
-    height: '300'
   };
 
   constructor() { }

@@ -11,27 +11,29 @@ import { StationInfoComponent } from './station-info/station-info.component';
 import { WaterLevelComponent } from './water-level/water-level.component';
 import { MeteorologicalComponent } from './meteorological/meteorological.component';
 
-const routes: Routes = [{ path: '', component: SidebarComponent, 
-  children:[
-      {
-        path:'',
-        component:AnalyticsComponent,
-        children:[
-          {
-            path: 'station-info',
-            component: StationInfoComponent
-          },
-          {
-            path: 'water-level',
-            component: WaterLevelComponent
-          },
-          {
-            path: 'meteorological-obs',
-            component: MeteorologicalComponent
-          },    
-        ]
-      },
-    ] 
+const routes: Routes = [{ 
+  path: '', 
+  component: SidebarComponent, 
+    children:[
+        {
+          path:'',
+          component:AnalyticsComponent,
+          children:[
+            {
+              path: 'station-info',
+              component: StationInfoComponent
+            },
+            {
+              path: 'water-level',
+              component: WaterLevelComponent
+            },
+            {
+              path: 'meteorological-obs',
+              component: MeteorologicalComponent
+            },    
+          ]
+        },
+      ] 
   }];
 
 @NgModule({
