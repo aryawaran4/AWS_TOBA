@@ -25,9 +25,12 @@
                     [disabled]="disabled">
                 </mat-slide-toggle>
             </div>            
-            <div class="text-center">
+            <div class="text-center" *ngIf="urlStatus === true">
                 <div class="w-fit mx-auto py-6"  *ngIf="loading === true"><mat-spinner></mat-spinner></div>
                 <p class="text-7xl font-bold py-6" *ngIf="loading === false" >{{card.value}}</p>
+            </div>
+            <div class="text-center" *ngIf="urlStatus === false">
+                <p class="text-xl font-bold py-6">Silahkan pilih station list...</p>
             </div>
         </div>
     </div>

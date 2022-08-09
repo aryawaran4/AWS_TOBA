@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   color: ThemePalette = 'accent';
   checked = false;
   disabled = false;
+  urlStatus!: boolean;
   loading: boolean = false
 
   dashboardCard = [
@@ -53,10 +54,20 @@ export class DashboardComponent implements OnInit {
       if (!(x instanceof NavigationEnd)) {
         return;
       }
+
+      if(/^\d+$/.test(this.router.url.slice(-1)) === true){
+        this.urlStatus = true
+      }else{
+        this.urlStatus = false
+      }
+
+      console.log(this.urlStatus);
+      
+
       this.loading = true
       this.ss.dashboardData().subscribe(
         res=>{
-          this.lastObj = res.data[res.data.length - 1]      
+          this.lastObj = res.data[res.data.length - 1]    
           this.rainfall = this.lastObj.rain
           this.airTemp = this.lastObj.temp
           this.humidity = this.lastObj.rh
