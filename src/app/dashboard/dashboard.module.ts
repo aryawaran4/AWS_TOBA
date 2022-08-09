@@ -6,6 +6,7 @@ import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [{ path: '', component: SidebarComponent, children:[
   {
@@ -20,7 +21,9 @@ const routes: Routes = [{ path: '', component: SidebarComponent, children:[
     CommonModule,
     RouterModule.forChild(routes),
     MatSlideToggleModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class DashboardModule { }

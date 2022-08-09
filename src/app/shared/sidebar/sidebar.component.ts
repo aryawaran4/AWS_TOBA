@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SnackbarService } from '../snackbar/snackbar.service';
 import { navLinks } from './sidebar-links';
@@ -27,6 +28,12 @@ export class SidebarComponent implements OnInit {
   title = '';
   profileName!:string;
 
+  id : any
+
+  stationFilter = new FormGroup({
+    id_aws: new FormControl('')
+  })
+
   constructor(
     // private auth: AuthService,
     private router:Router,
@@ -37,6 +44,16 @@ export class SidebarComponent implements OnInit {
     this.currentUrl = this.router.url
     
     this.getMeInfo();
+  }
+
+  appendParamsUrl(){
+    this.router.navigate([], {
+      queryParams: {
+        id : this.stationFilter.value.id_aws 
+      },
+      queryParamsHandling: 'merge',
+    });
+    // window.location.reload()
   }
 
   getMeInfo(){
