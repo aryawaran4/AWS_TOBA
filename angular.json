@@ -67,17 +67,12 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "AWS-TOBA:build",
-            "proxyConfig": "src/proxy.conf.js"
-          },
           "configurations": {
             "production": {
               "browserTarget": "AWS-TOBA:build:production"
             },
             "development": {
-              "browserTarget": "AWS-TOBA:build:development",
-              "proxyConfig": "src/proxy.conf.js"
+              "browserTarget": "AWS-TOBA:build:development"
             }
           },
           "defaultConfiguration": "development"
