@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { Router } from '@angular/router';
-import { DashboardService } from './dashboard.services';
+import { SharedService } from '../shared/shared.services';
 
 const DashboardCardValue = [
   { 'label': 'Rainfall', 'unit': 'mm', 'value': '0.02' },
@@ -27,32 +27,23 @@ export class DashboardComponent implements OnInit {
   checked = false;
   disabled = false;
 
-  lastMonth = new Date(new Date().setMonth(new Date().getMonth() - 1, 1)).toISOString()
+  // lastMonth = new Date(new Date().setMonth(new Date().getMonth() - 1, 1)).toISOString()
 
-  stationLocationForm = new FormGroup({
-    id_aws: new FormControl(this.router.url.replace(/\D/g, "")),
-    start_datetime: new FormControl(this.lastMonth.replace('T', ' ').split(".")[0]),
-    end_datetime: new FormControl(new Date().toISOString().replace('T', ' ').split(".")[0])
-  })
+  // stationLocationForm = new FormGroup({
+  //   id_aws: new FormControl(this.router.url.replace(/\D/g, "")),
+  //   start_datetime: new FormControl(this.lastMonth.replace('T', ' ').split(".")[0]),
+  //   end_datetime: new FormControl(new Date().toISOString().replace('T', ' ').split(".")[0])
+  // })    
 
-  constructor(private ds: DashboardService, private router:Router,) { }
-
-  ngOnInit(): void {
-    console.log(this.stationLocationForm.value); 
-    this.getDashboardData()
+  constructor(private ss: SharedService, private router:Router,) { 
   }
 
-  async getDashboardData(){
-    const formValue = this.stationLocationForm.value
-    // const res = await this.ds.postDashboard(formValue)       
-    this.ds.postDashboard(formValue).subscribe(
-      res=>{
-        console.log('hasil', res);        
-      },
-      err=>{
-        console.log('salah');        
-      }
-    )
+  ngOnInit(): void { 
+    this.getDashboardData()    
+  }
+
+  getDashboardData(){
+    this.ss.dashboardData().subscribe()
   }
 
 }

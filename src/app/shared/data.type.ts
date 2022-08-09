@@ -1,5 +1,3 @@
-export const url = 'http://202.90.199.132/api/v1/data/aws?key=ca129115a7c7bf35bfc0634fa8ade63d'
-
 export interface TobaDataType{
     id_aws: string,
     start_datetime: string,
@@ -24,6 +22,7 @@ export interface TobaDataType{
         },    
     ]
 }
+
 
 export interface FormTobaType{
     id_aws : string
