@@ -26,7 +26,7 @@ export interface TobaDataType{
 }
 
 export interface FormTobaType{
-    id_aws : any,
-    start_datetime : any,
-    end_datetime : any
+    id_aws : string
+    start_datetime : string,
+    end_datetime : string
 }
