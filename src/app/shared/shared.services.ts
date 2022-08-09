@@ -24,9 +24,8 @@ export class SharedService {
     thisDate = this.Tdate.getDate();
 
     //Get month and last month type Number
-    lastMonth = this.Ldate.getMonth()
-    // thisMonth = new Date().getMonth() === 12 ? 12 : new Date().getMonth() + 1
-    thisMonth = this.Tdate.getMonth()
+    lastMonth = this.Ldate.getMonth() + 1
+    thisMonth = this.Tdate.getMonth() + 1
 
     //For parsing 1-9 to 01-09
     parseDate!: string;
@@ -66,10 +65,6 @@ export class SharedService {
     
         this.start_date = this.lastYear + '-' + this.lastMonth + '-' + this.lastDate + ' ' + '00:00:00'
         this.end_date = this.thisYear + '-' + this.thisMonth + '-' + this.thisDate + ' ' + '00:00:00'
-    }
-
-    postTobaData(formValue: any){
-        return this.http.post<any>(this.url, formValue)
     }
 
     dashboardData(){

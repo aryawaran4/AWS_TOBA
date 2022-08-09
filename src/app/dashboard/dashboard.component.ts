@@ -1,19 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { TobaDataType, TobaType } from '../shared/data.type';
 import { SharedService } from '../shared/shared.services';
-
-const DashboardCardValue = [
-  { 'label': 'Rainfall', 'unit': 'mm', 'value': '0.02' },
-  { 'label': 'Air Temp', 'unit': 'C', 'value': '29' },
-  { 'label': 'Humidity', 'unit': '%', 'value': '75' },
-  { 'label': 'Wind Direction', 'unit': 'degrees', 'value': '240' },
-  { 'label': 'Water Temp', 'unit': 'C', 'value': '25' },
-  { 'label': 'Water Level', 'unit': 'm', 'value': '1.8' },
-  { 'label': 'Radiation', 'unit': 'W/m', 'value': '600' },
-  { 'label': 'Wind Speed', 'unit': 'Knot', 'value': '15' }
-]
 
 @Component({
   selector: 'app-dashboard',
@@ -21,11 +11,33 @@ const DashboardCardValue = [
 })
 export class DashboardComponent implements OnInit {
 
-  dashboardCard = DashboardCardValue
-
   color: ThemePalette = 'accent';
   checked = false;
   disabled = false;
+  loading: boolean = false
+
+  dashboardCard = [
+    { label: 'Rainfall', unit: 'mm', value :''},
+    { label: 'Air Temp', unit: 'C', value :''},
+    { label: 'Humidity', unit: '%', value :''},
+    { label: 'Wind Direction', unit: 'degrees', value :''},
+    { label: 'Water Temp', unit: 'C', value :''},
+    { label: 'Water Level', unit: 'm' , value :''},
+    { label: 'Radiation', unit: 'W/m' , value :''},
+    { label: 'Wind Speed', unit: 'Knot', value :'' }
+  ]
+
+  rainfall!: string
+  airTemp!: string
+  humidity!: string
+  windDirection!: string
+  waterTemp!: string
+  waterLvl!: string
+  radiation!: string
+  windSpeed!: string  
+
+  dashboardData!: TobaType
+  lastObj!: TobaDataType
 
   // lastMonth = new Date(new Date().setMonth(new Date().getMonth() - 1, 1)).toISOString()
 
@@ -35,15 +47,40 @@ export class DashboardComponent implements OnInit {
   //   end_datetime: new FormControl(new Date().toISOString().replace('T', ' ').split(".")[0])
   // })    
 
-  constructor(private ss: SharedService, private router:Router,) { 
+  constructor(private ss: SharedService, private router:Router) { 
+    router.events.subscribe(x => {
+      // only interested in the NavigationEnd type of event
+      if (!(x instanceof NavigationEnd)) {
+        return;
+      }
+      this.loading = true
+      this.ss.dashboardData().subscribe(
+        res=>{
+          this.lastObj = res.data[res.data.length - 1]      
+          this.rainfall = this.lastObj.rain
+          this.airTemp = this.lastObj.temp
+          this.humidity = this.lastObj.rh
+          this.windDirection = this.lastObj.winddir
+          this.waterTemp = this.lastObj.watertemp
+          this.waterLvl = this.lastObj.waterlevel
+          this.radiation = this.lastObj.solrad
+          this.windSpeed = this.lastObj.windspeed
+          const arrData = [ this.rainfall, this.airTemp, this.humidity, this.windDirection, this.waterTemp, this.waterLvl, this.radiation, this.windSpeed ]
+          this.dashboardCard.forEach((element, i) => {
+            element.value = arrData[i]
+          });
+          this.loading = false
+        },
+        err=>{
+          alert(err)
+          this.loading = false
+        }
+      )
+      
+    });
   }
 
-  ngOnInit(): void { 
-    this.getDashboardData()    
+  ngOnInit(): void {  
   }
-
-  getDashboardData(){
-    this.ss.dashboardData().subscribe()
-  }
-
+  
 }

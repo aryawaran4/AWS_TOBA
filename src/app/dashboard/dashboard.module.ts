@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
-import { RouterModule, Routes } from '@angular/router';
 import { SidebarComponent } from '../shared/sidebar/sidebar.component';
+import { RouterModule, Routes } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 const routes: Routes = [{ path: '', component: SidebarComponent, children:[
   {
@@ -21,9 +22,10 @@ const routes: Routes = [{ path: '', component: SidebarComponent, children:[
     CommonModule,
     RouterModule.forChild(routes),
     MatSlideToggleModule,
-    MatIconModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule,
+    MatProgressSpinnerModule
   ]
 })
 export class DashboardModule { }

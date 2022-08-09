@@ -52,8 +52,7 @@ export class SidebarComponent implements OnInit {
         id : this.stationFilter.value.id_aws 
       },
       queryParamsHandling: 'merge',
-    });
-    // window.location.reload()
+    });    
   }
 
   getMeInfo(){
