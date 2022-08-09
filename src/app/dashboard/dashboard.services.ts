@@ -13,7 +13,7 @@ export class DashboardService {
     constructor(private http: HttpClient) {}
 
     postDashboard(formValue: any){
-        return this.http.post<any>(this.url, formValue)
+        return this.http.post<any>('/api/v1/data/aws?key=ca129115a7c7bf35bfc0634fa8ade63d', formValue)
     }
 
 }
