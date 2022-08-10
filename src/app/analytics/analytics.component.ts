@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartType, GoogleChartComponent } from 'angular-google-charts';
 
 @Component({
   selector: 'app-analytics',

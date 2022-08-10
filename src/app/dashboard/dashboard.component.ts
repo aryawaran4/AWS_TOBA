@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit {
   windSpeed!: string  
   time!: string
 
-  dashboardData!: TobaType
+  getTobaData!: TobaType
   lastObj!: TobaDataType
 
   // lastMonth = new Date(new Date().setMonth(new Date().getMonth() - 1, 1)).toISOString()
@@ -66,7 +66,7 @@ export class DashboardComponent implements OnInit {
       
 
       this.loading = true
-      this.ss.dashboardData().subscribe(
+      this.ss.getTobaData().subscribe(
         res=>{
           this.lastObj = res.data[res.data.length - 1]    
           this.rainfall = this.lastObj.rain

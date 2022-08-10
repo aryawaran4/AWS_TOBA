@@ -67,7 +67,7 @@ export class SharedService {
         this.end_date = this.thisYear + '-' + this.thisMonth + '-' + this.thisDate + ' ' + '00:00:00'
     }
 
-    dashboardData(){
+    getTobaData(){
         let formToba = new FormGroup({
           id_aws: new FormControl(this.router.url.replace(/\D/g, "")),
           start_datetime: new FormControl(this.start_date),

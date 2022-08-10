@@ -6,10 +6,11 @@ import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { GoogleChartsModule } from 'angular-google-charts';
 import { StationInfoComponent } from './station-info/station-info.component';
 import { WaterLevelComponent } from './water-level/water-level.component';
 import { MeteorologicalComponent } from './meteorological/meteorological.component';
+
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 const routes: Routes = [{ 
   path: '', 
@@ -45,7 +46,7 @@ const routes: Routes = [{
     MatIconModule,
     MatSidenavModule,
 
-    GoogleChartsModule
+    NgxChartsModule,
   ]
 })
 export class AnalyticsModule { }

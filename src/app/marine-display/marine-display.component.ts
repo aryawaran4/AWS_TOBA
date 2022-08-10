@@ -36,7 +36,7 @@ export class MarineDisplayComponent implements OnInit {
   windSpeed!: string  
   time!: string
 
-  dashboardData!: TobaType
+  getTobaData!: TobaType
   lastObj!: TobaDataType
 
   constructor(private ss: SharedService, private router:Router) { 
@@ -56,7 +56,7 @@ export class MarineDisplayComponent implements OnInit {
       
 
       this.loading = true
-      this.ss.dashboardData().subscribe(
+      this.ss.getTobaData().subscribe(
         res=>{
           this.lastObj = res.data[res.data.length - 1]    
           this.rainfall = this.lastObj.rain

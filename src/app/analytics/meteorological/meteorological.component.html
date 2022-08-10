@@ -1,20 +1,29 @@
-
-<google-chart #chart  
-class="p-4 pb-2"
-style="width: 100%; height: 350px;"
-[title]="title"  
-[type]="type"  
-[data]="data"  
-[columns]="columnNames"  
-[options]="options">  
-</google-chart>       
-
-<google-chart #chart  
-class="p-4 pt-2"
-style="width: 100%; height: 350px;"
-[title]="title"  
-[type]="type"  
-[data]="data"  
-[columns]="columnNames"  
-[options]="options">  
-</google-chart>  
+<div class="w-full flex flex-col gap-4"> 
+    <div style="width: 100%; height: 300px;">
+        <ngx-charts-line-chart  
+          [legend]="legend"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [xAxis]="xAxis"
+          [yAxis]="yAxis"
+          [xAxisLabel]="xAxisLabel"
+          [yAxisLabel]="yAxisLabel"
+          [results]="chartData"
+          >
+        </ngx-charts-line-chart>
+    </div>
+    
+    <div style="width: 100%; height: 300px;">
+        <ngx-charts-line-chart  
+          [legend]="legend"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [xAxis]="xAxis"
+          [yAxis]="yAxis"
+          [xAxisLabel]="xAxisLabel"
+          [yAxisLabel]="yAxisLabel"
+          [results]="chartData"
+          >
+        </ngx-charts-line-chart>
+    </div>
+</div>
