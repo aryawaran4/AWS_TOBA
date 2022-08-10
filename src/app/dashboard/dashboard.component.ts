@@ -36,6 +36,7 @@ export class DashboardComponent implements OnInit {
   waterLvl!: string
   radiation!: string
   windSpeed!: string  
+  time!: string
 
   dashboardData!: TobaType
   lastObj!: TobaDataType
@@ -76,6 +77,7 @@ export class DashboardComponent implements OnInit {
           this.waterLvl = this.lastObj.waterlevel
           this.radiation = this.lastObj.solrad
           this.windSpeed = this.lastObj.windspeed
+          this.time = this.lastObj.waktu
           const arrData = [ this.rainfall, this.airTemp, this.humidity, this.windDirection, this.waterTemp, this.waterLvl, this.radiation, this.windSpeed ]
           this.dashboardCard.forEach((element, i) => {
             element.value = arrData[i]

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { TobaDataType, TobaType } from '../shared/data.type';
+import { SharedService } from '../shared/shared.services';
 
 const marineCardValue = [
   { 'label': 'Rainfall', 'unit': 'mm', 'value': '0.02' },
@@ -14,15 +17,69 @@ const marineCardValue = [
 })
 export class MarineDisplayComponent implements OnInit {
 
-  marineCard = marineCardValue
-
   color: ThemePalette = 'accent';
   checked = false;
   disabled = false;
+  urlStatus!: boolean;
+  loading: boolean = false
 
-  constructor() { }
+  marineCard = [
+    { label: 'Rainfall', unit: 'mm', value :''},
+    { label: 'Air Temp', unit: 'C', value :''},
+    { label: 'Preassure', unit: 'mbar', value :''},
+    { label: 'Wind Speed', unit: 'Knot', value :'' }
+  ]
 
-  ngOnInit(): void {
+  rainfall!: string
+  airTemp!: string
+  preassure!: string
+  windSpeed!: string  
+  time!: string
+
+  dashboardData!: TobaType
+  lastObj!: TobaDataType
+
+  constructor(private ss: SharedService, private router:Router) { 
+    router.events.subscribe(x => {
+      // only interested in the NavigationEnd type of event
+      if (!(x instanceof NavigationEnd)) {
+        return;
+      }
+
+      if(/^\d+$/.test(this.router.url.slice(-1)) === true){
+        this.urlStatus = true
+      }else{
+        this.urlStatus = false
+      }
+
+      console.log(this.urlStatus);
+      
+
+      this.loading = true
+      this.ss.dashboardData().subscribe(
+        res=>{
+          this.lastObj = res.data[res.data.length - 1]    
+          this.rainfall = this.lastObj.rain
+          this.airTemp = this.lastObj.temp
+          this.preassure = this.lastObj.pressure
+          this.windSpeed = this.lastObj.windspeed
+          this.time = this.lastObj.waktu
+          const arrData = [ this.rainfall, this.airTemp, this.preassure, this.windSpeed ]
+          this.marineCard.forEach((element, i) => {
+            element.value = arrData[i]
+          });
+          this.loading = false
+        },
+        err=>{
+          alert(err)
+          this.loading = false
+        }
+      )
+      
+    });
+  }
+
+  ngOnInit(): void {  
   }
 
 }

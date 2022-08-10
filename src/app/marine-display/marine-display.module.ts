@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const routes: Routes = [{ path: '', component: SidebarComponent, children:[
   {
@@ -19,7 +20,8 @@ const routes: Routes = [{ path: '', component: SidebarComponent, children:[
     CommonModule,
     RouterModule.forChild(routes),
     MatSlideToggleModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MarineDisplayModule { }
