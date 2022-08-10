@@ -1,3 +1,4 @@
+import { trigger, transition, style, animate } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { Router, NavigationEnd } from '@angular/router';
@@ -14,6 +15,20 @@ const marineCardValue = [
 @Component({
   selector: 'app-marine-display',
   templateUrl: './marine-display.component.html',
+  animations: [
+    trigger(
+      'enterAnimation', [
+        transition(':enter', [
+          style({transform: 'translateX(100%)', opacity: 0}),
+          animate('1000ms', style({transform: 'translateX(0)', opacity: 1}))
+        ]),
+        transition(':leave', [
+          style({transform: 'translateX(0)', opacity: 1}),
+          animate('1000ms', style({transform: 'translateX(100%)', opacity: 0}))
+        ])
+      ]
+    )
+  ],
 })
 export class MarineDisplayComponent implements OnInit {
 
@@ -34,6 +49,7 @@ export class MarineDisplayComponent implements OnInit {
   airTemp!: string
   preassure!: string
   windSpeed!: string  
+  windCheck!: number
   time!: string
 
   getTobaData!: TobaType
@@ -64,6 +80,7 @@ export class MarineDisplayComponent implements OnInit {
           this.preassure = this.lastObj.pressure
           this.windSpeed = this.lastObj.windspeed
           this.time = this.lastObj.waktu
+          this.windCheck = parseFloat(this.windSpeed)
           const arrData = [ this.rainfall, this.airTemp, this.preassure, this.windSpeed ]
           this.marineCard.forEach((element, i) => {
             element.value = arrData[i]

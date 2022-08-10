@@ -11,6 +11,7 @@ import { WaterLevelComponent } from './water-level/water-level.component';
 import { MeteorologicalComponent } from './meteorological/meteorological.component';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const routes: Routes = [{ 
   path: '', 
@@ -45,6 +46,7 @@ const routes: Routes = [{
     MatSlideToggleModule,
     MatIconModule,
     MatSidenavModule,
+    MatProgressSpinnerModule,
 
     NgxChartsModule,
   ]

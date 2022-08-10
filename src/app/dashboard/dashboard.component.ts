@@ -1,3 +1,4 @@
+import { trigger, transition, style, animate } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
@@ -8,6 +9,20 @@ import { SharedService } from '../shared/shared.services';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
+  animations: [
+    trigger(
+      'enterAnimation', [
+        transition(':enter', [
+          style({transform: 'translateX(100%)', opacity: 0}),
+          animate('1000ms', style({transform: 'translateX(0)', opacity: 1}))
+        ]),
+        transition(':leave', [
+          style({transform: 'translateX(0)', opacity: 1}),
+          animate('1000ms', style({transform: 'translateX(100%)', opacity: 0}))
+        ])
+      ]
+    )
+  ],
 })
 export class DashboardComponent implements OnInit {
 
@@ -37,6 +52,8 @@ export class DashboardComponent implements OnInit {
   radiation!: string
   windSpeed!: string  
   time!: string
+
+  windCheck!: number;
 
   getTobaData!: TobaType
   lastObj!: TobaDataType
@@ -78,6 +95,7 @@ export class DashboardComponent implements OnInit {
           this.radiation = this.lastObj.solrad
           this.windSpeed = this.lastObj.windspeed
           this.time = this.lastObj.waktu
+          this.windCheck = parseFloat(this.windSpeed)
           const arrData = [ this.rainfall, this.airTemp, this.humidity, this.windDirection, this.waterTemp, this.waterLvl, this.radiation, this.windSpeed ]
           this.dashboardCard.forEach((element, i) => {
             element.value = arrData[i]

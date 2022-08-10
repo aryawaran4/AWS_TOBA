@@ -1,6 +1,8 @@
-<div style="width: 100%; height: 600px;">
+<div style="width: 95%; height: 600px;" class="py-6 mx-auto">
     <ngx-charts-line-chart  
+      *ngIf="urlStatus === true"
       [legend]="legend"
+      [yScaleMax]="20"
       [showXAxisLabel]="showXAxisLabel"
       [showYAxisLabel]="showYAxisLabel"
       [xAxis]="xAxis"
@@ -10,4 +12,5 @@
       [results]="chartData"
       >
     </ngx-charts-line-chart>
+    <p class="text-xl font-semibold" *ngIf="urlStatus === false">Silahkan pilih station...</p>
 </div>

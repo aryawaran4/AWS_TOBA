@@ -1,7 +1,7 @@
 <div class="bg-my-blue px-4 pt-6 pb-20">
    <div class="flex items-center justify-between">
        <p class="text-6xl font-semibold text-white">Analytics</p>
-       <div class="rounded-l-md overflow-hidden flex text-white -mr-4">
+       <!-- <div class="rounded-l-md overflow-hidden flex text-white -mr-4">
            <div class="p-4 px-6 bg-my-red bg-opacity-80">
                <p class="relative top-1"><mat-icon>warning</mat-icon></p>
            </div>
@@ -9,7 +9,7 @@
                <p>KECEPATAN ANGIN LEBIH DARI 15 KTS!</p>
                <p>RESIKO TINGGI TERHADAP KESELAMATAN KAPAL TONGKANG!</p>
            </div>
-       </div>
+       </div> -->
    </div>
 </div>
 
@@ -18,10 +18,10 @@
       <mat-drawer mode="side" opened>
          <div class="p-4 text-my-blue">
             <p class="font-semibold text-xl mb-4">Analytics List</p>
-            <ul class="text-lg font-light flex flex-col gap-4 w-56">
-               <li [routerLink]="'station-info'" class="flex cursor-pointer items-center justify-between hover:bg-my-gray hover:bg-opacity-30">Station Info <span class="relative top-1"><mat-icon>arrow_forward_ios</mat-icon></span> </li>
-               <li [routerLink]="'water-level'" class="flex cursor-pointer items-center justify-between hover:bg-my-gray hover:bg-opacity-30">Water Level <span class="relative top-1"><mat-icon>arrow_forward_ios</mat-icon></span></li>
-               <li [routerLink]="'meteorological-obs'" class="flex cursor-pointer items-center justify-between hover:bg-my-gray hover:bg-opacity-30">Meteorological Obs <span class="relative top-1"><mat-icon>arrow_forward_ios</mat-icon></span></li>
+            <ul class="text-lg font-normal flex flex-col w-56">
+               <li [routerLink]="'station-info'" class="rounded-md p-2 flex cursor-pointer items-center justify-between hover:bg-my-gray hover:bg-opacity-30">Station Info <span class="relative top-1"><mat-icon>arrow_forward_ios</mat-icon></span> </li>
+               <li [routerLink]="'water-level'" class="rounded-md p-2 flex cursor-pointer items-center justify-between hover:bg-my-gray hover:bg-opacity-30">Water Level <span class="relative top-1"><mat-icon>arrow_forward_ios</mat-icon></span></li>
+               <li [routerLink]="'meteorological-obs'" class="rounded-md p-2 flex cursor-pointer items-center justify-between hover:bg-my-gray hover:bg-opacity-30">Meteorological Obs <span class="relative top-1"><mat-icon>arrow_forward_ios</mat-icon></span></li>
             </ul>
          </div>
       </mat-drawer>
