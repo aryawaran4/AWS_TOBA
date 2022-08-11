@@ -35,8 +35,25 @@
     </div>
 
     <div class="w-full md:w-1/2">
-        <div class="card bg-white text-my-blue h-full text-xl p-6">
-            Compass in progress...
+        <div class="card bg-white text-my-blue h-full text-xl p-6 px-4">
+            <div class="w-full mb-6">
+                <p class="text-2xl font-light">Compass</p>                    
+            </div>            
+            <div>
+                <div class="text-center" *ngIf="urlStatus === true">
+                    <div class="w-fit mx-auto py-6"  *ngIf="loading === true"><mat-spinner></mat-spinner></div>
+                    <div class="flex flex-col md:flex-row gap-4 items-center">                    
+                        <img src="/assets/compas.png" class="" alt="compas"*ngIf="loading === false">
+                        <div>
+                            <p class="text-7xl font-bold py-6" *ngIf="loading === false" >Wind Direction</p>
+                            <p class="bg-my-blue text-white py-3 px-5 rounded-md w-fit mx-auto">{{windDirection}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center" *ngIf="urlStatus === false">
+                    <p class="text-xl font-semibold py-6">Silahkan pilih station...</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

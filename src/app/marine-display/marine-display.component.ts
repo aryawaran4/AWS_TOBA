@@ -49,6 +49,7 @@ export class MarineDisplayComponent implements OnInit {
   airTemp!: string
   preassure!: string
   windSpeed!: string  
+  windDirection!: string
   windCheck!: number
   time!: string
 
@@ -79,6 +80,7 @@ export class MarineDisplayComponent implements OnInit {
           this.airTemp = this.lastObj.temp
           this.preassure = this.lastObj.pressure
           this.windSpeed = this.lastObj.windspeed
+          this.windDirection = this.lastObj.winddir
           this.time = this.lastObj.waktu
           this.windCheck = parseFloat(this.windSpeed)
           const arrData = [ this.rainfall, this.airTemp, this.preassure, this.windSpeed ]
