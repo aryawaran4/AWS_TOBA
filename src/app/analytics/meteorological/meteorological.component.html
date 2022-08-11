@@ -1,7 +1,11 @@
 <div style="width: 95%; height: 600px;" class="py-6 mx-auto text-my-blue flex flex-col gap-4"> 
-    <p class="mb-4">Waktu perhitungan : <span class="font-semibold">{{ !!time ? time : '-' }}</span></p>
+    <div>
+      <p class="mb-4">Waktu perhitungan : <span class="font-semibold">{{ !!time ? time : '-' }}</span></p>
+      <p class="text-xl font-semibold" *ngIf="urlStatus === false">Silahkan pilih station...</p>
+    </div>
     <div style="height: 300px;">
         <ngx-charts-line-chart  
+          *ngIf="urlStatus === true"
           [legend]="legend"
           [showXAxisLabel]="showXAxisLabel"
           [showYAxisLabel]="showYAxisLabel"
@@ -16,6 +20,7 @@
     
     <div style="height: 300px;">
         <ngx-charts-line-chart  
+          *ngIf="urlStatus === true"
           [legend]="legend"
           [showXAxisLabel]="showXAxisLabel"
           [showYAxisLabel]="showYAxisLabel"
@@ -26,5 +31,5 @@
           [results]="chartDataTemp"
           >
         </ngx-charts-line-chart>
-    </div>
+    </div>    
 </div>

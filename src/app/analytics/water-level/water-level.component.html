@@ -1,5 +1,6 @@
 <div style="width: 95%; height: 600px;" class="py-6 mx-auto text-my-blue">
-    <p class="mb-4">Waktu perhitungan : <span class="font-semibold">{{ !!time ? time : '-' }}</span></p>
+  <p class="mb-4">Waktu perhitungan : <span class="font-semibold">{{ !!time ? time : '-' }}</span></p>
+  <p class="text-xl font-semibold" *ngIf="urlStatus === false">Silahkan pilih station...</p>
     <ngx-charts-line-chart  
       *ngIf="urlStatus === true"
       [legend]="legend"
@@ -13,5 +14,4 @@
       [results]="chartData"
       >
     </ngx-charts-line-chart>
-    <p class="text-xl font-semibold" *ngIf="urlStatus === false">Silahkan pilih station...</p>
 </div>
