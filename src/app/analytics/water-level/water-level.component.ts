@@ -27,28 +27,28 @@ export class WaterLevelComponent implements OnInit {
   perHour = [
     {"name" : "Water Level",
     "series" : [
-     {"name" : '03:00:00', "value": 0},
-     {"name" : '04:00:00', "value": 0},
-     {"name" : '05:00:00', "value": 0},
-     {"name" : '06:00:00', "value": 0},
-     {"name" : '07:00:00', "value": 0},
-     {"name" : '08:00:00', "value": 0},
-     {"name" : '09:00:00', "value": 0},
-     {"name" : '10:00:00', "value": 0},
-     {"name" : '11:00:00', "value": 0},
-     {"name" : '12:00:00', "value": 0},
-     {"name" : '13:00:00', "value": 0},
-     {"name" : '14:00:00', "value": 0},
-     {"name" : '15:00:00', "value": 0},
-     {"name" : '16:00:00', "value": 0},
-     {"name" : '17:00:00', "value": 0},
-     {"name" : '18:00:00', "value": 0},
-     {"name" : '19:00:00', "value": 0},
-     {"name" : '20:00:00', "value": 0},
-     {"name" : '21:00:00', "value": 0},
-     {"name" : '22:00:00', "value": 0},
-     {"name" : '23:00:00', "value": 0},
-     {"name" : '23:59:00', "value": 0}
+     {"name" : '03:00', "value": 0},
+     {"name" : '04:00', "value": 0},
+     {"name" : '05:00', "value": 0},
+     {"name" : '06:00', "value": 0},
+     {"name" : '07:00', "value": 0},
+     {"name" : '08:00', "value": 0},
+     {"name" : '09:00', "value": 0},
+     {"name" : '10:00', "value": 0},
+     {"name" : '11:00', "value": 0},
+     {"name" : '12:00', "value": 0},
+     {"name" : '13:00', "value": 0},
+     {"name" : '14:00', "value": 0},
+     {"name" : '15:00', "value": 0},
+     {"name" : '16:00', "value": 0},
+     {"name" : '17:00', "value": 0},
+     {"name" : '18:00', "value": 0},
+     {"name" : '19:00', "value": 0},
+     {"name" : '20:00', "value": 0},
+     {"name" : '21:00', "value": 0},
+     {"name" : '22:00', "value": 0},
+     {"name" : '23:00', "value": 0},
+     {"name" : '23:59', "value": 0}
     ]
     }
   ]
@@ -63,6 +63,7 @@ export class WaterLevelComponent implements OnInit {
   preassure!: string
   windSpeed!: string  
   time!: string
+  lastObj!: TobaDataType
 
   waterLvlData: TobaDataType[] = []
   waterData: any[] = []
@@ -86,7 +87,9 @@ export class WaterLevelComponent implements OnInit {
       this.loading = true
       this.ss.getTobaData().subscribe(
         res=>{
-          this.waterLvlData = res.data
+          this.lastObj = res.data[res.data.length - 1] 
+          this.time = this.lastObj.waktu
+          this.waterLvlData = res.data          
           this.waterLvlData.forEach(e => {
             this.perHour[0].series.forEach( (series) => {
               if(e.waktu.includes(series.name)){

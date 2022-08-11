@@ -9,7 +9,7 @@ import { SharedService } from 'src/app/shared/shared.services';
 })
 export class MeteorologicalComponent implements OnInit {
 
-  title = 'Water Level Real Time';  
+  titleWindChart = 'Water Level Real Time';  
 
   // options
   legend: boolean = true;
@@ -19,13 +19,95 @@ export class MeteorologicalComponent implements OnInit {
   yAxis: boolean = true;
   showYAxisLabel: boolean = true;
   showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Waktu';
-  yAxisLabel: string = 'Water Level';
-  timeline: boolean = true;
+
+  xLabel: string = 'Waktu';
+  yWind: string = 'Speed Knots';
+  yTemp: string = 'Degree (F)';
 
   //Collecting data from 03:00 because the data collection at API at 03:00 too
-  perHour = [
+  windPerHour = [
+    {"name" : "Wind Direction",
+    "series" : [
+      {"name" : '03:00:00', "value": 0},
+      {"name" : '04:00:00', "value": 0},
+      {"name" : '05:00:00', "value": 0},
+      {"name" : '06:00:00', "value": 0},
+      {"name" : '07:00:00', "value": 0},
+      {"name" : '08:00:00', "value": 0},
+      {"name" : '09:00:00', "value": 0},
+      {"name" : '10:00:00', "value": 0},
+      {"name" : '11:00:00', "value": 0},
+      {"name" : '12:00:00', "value": 0},
+      {"name" : '13:00:00', "value": 0},
+      {"name" : '14:00:00', "value": 0},
+      {"name" : '15:00:00', "value": 0},
+      {"name" : '16:00:00', "value": 0},
+      {"name" : '17:00:00', "value": 0},
+      {"name" : '18:00:00', "value": 0},
+      {"name" : '19:00:00', "value": 0},
+      {"name" : '20:00:00', "value": 0},
+      {"name" : '21:00:00', "value": 0},
+      {"name" : '22:00:00', "value": 0},
+      {"name" : '23:00:00', "value": 0},
+      {"name" : '23:59:00', "value": 0}
+     ]
+    },
+    {"name" : "Wind Speed",
+    "series" : [
+      {"name" : '03:00:00', "value": 0},
+      {"name" : '04:00:00', "value": 0},
+      {"name" : '05:00:00', "value": 0},
+      {"name" : '06:00:00', "value": 0},
+      {"name" : '07:00:00', "value": 0},
+      {"name" : '08:00:00', "value": 0},
+      {"name" : '09:00:00', "value": 0},
+      {"name" : '10:00:00', "value": 0},
+      {"name" : '11:00:00', "value": 0},
+      {"name" : '12:00:00', "value": 0},
+      {"name" : '13:00:00', "value": 0},
+      {"name" : '14:00:00', "value": 0},
+      {"name" : '15:00:00', "value": 0},
+      {"name" : '16:00:00', "value": 0},
+      {"name" : '17:00:00', "value": 0},
+      {"name" : '18:00:00', "value": 0},
+      {"name" : '19:00:00', "value": 0},
+      {"name" : '20:00:00', "value": 0},
+      {"name" : '21:00:00', "value": 0},
+      {"name" : '22:00:00', "value": 0},
+      {"name" : '23:00:00', "value": 0},
+      {"name" : '23:59:00', "value": 0}
+     ]
+    }
+  ]
+
+  tempPerHour = [
     {"name" : "Water Level",
+    "series" : [
+     {"name" : '03:00:00', "value": 0},
+     {"name" : '04:00:00', "value": 0},
+     {"name" : '05:00:00', "value": 0},
+     {"name" : '06:00:00', "value": 0},
+     {"name" : '07:00:00', "value": 0},
+     {"name" : '08:00:00', "value": 0},
+     {"name" : '09:00:00', "value": 0},
+     {"name" : '10:00:00', "value": 0},
+     {"name" : '11:00:00', "value": 0},
+     {"name" : '12:00:00', "value": 0},
+     {"name" : '13:00:00', "value": 0},
+     {"name" : '14:00:00', "value": 0},
+     {"name" : '15:00:00', "value": 0},
+     {"name" : '16:00:00', "value": 0},
+     {"name" : '17:00:00', "value": 0},
+     {"name" : '18:00:00', "value": 0},
+     {"name" : '19:00:00', "value": 0},
+     {"name" : '20:00:00', "value": 0},
+     {"name" : '21:00:00', "value": 0},
+     {"name" : '22:00:00', "value": 0},
+     {"name" : '23:00:00', "value": 0},
+     {"name" : '23:59:00', "value": 0}
+    ]
+    },
+    {"name" : "Water Temperature",
     "series" : [
      {"name" : '03:00:00', "value": 0},
      {"name" : '04:00:00', "value": 0},
@@ -53,7 +135,8 @@ export class MeteorologicalComponent implements OnInit {
     }
   ]
 
-  chartData: any
+  chartDataWind: any
+  chartDataTemp: any
 
   loading = false
   urlStatus!: boolean;
@@ -63,8 +146,10 @@ export class MeteorologicalComponent implements OnInit {
   preassure!: string
   windSpeed!: string  
   time!: string
+  lastObj!: TobaDataType
 
-  waterLvlData: TobaDataType[] = []
+  windData: TobaDataType[] = []
+  tempData: TobaDataType[]= []
   waterData: any[] = []
 
   constructor(private ss: SharedService, private router:Router) { 
@@ -86,23 +171,50 @@ export class MeteorologicalComponent implements OnInit {
       this.loading = true
       this.ss.getTobaData().subscribe(
         res=>{
-          this.waterLvlData = res.data
-          this.waterLvlData.forEach(e => {
-            this.perHour[0].series.forEach( (series) => {
+          this.lastObj = res.data[res.data.length - 1] 
+          this.time = this.lastObj.waktu
+          this.windData = res.data         
+          this.windData.forEach((e) => {      
+            this.windPerHour[0].series.forEach( (series) => {
+              // this.ss.arrRuleDate.forEach( dateRule => {                
+                if(e.waktu.includes(series.name)){
+                  series.value = parseFloat(e.winddir) 
+                }
+              // } )
+            } )
+            this.windPerHour[1].series.forEach( (series) => {
+              // this.ss.arrRuleDate.forEach( dateRule => {
+                if(e.waktu.includes(series.name)){
+                  series.value = parseFloat(e.windspeed) 
+                }
+              // } )
+            } )
+          });
+
+          this.tempData = res.data
+          this.tempData.forEach(e => {
+            this.tempPerHour[0].series.forEach( (series) => {
               if(e.waktu.includes(series.name)){
                 series.value = parseFloat(e.waterlevel) 
               }
             } )
+            this.tempPerHour[1].series.forEach( (series) => {
+              if(e.waktu.includes(series.name)){
+                series.value = parseFloat(e.watertemp) 
+              }
+            } )
           });
 
-          // this.perHour.forEach( (Obj, i) => {
-          //   let arrData = Object.values(Obj)
-          //   this.waterData.push(arrData)
-          // })
+          this.chartDataWind = [...this.windPerHour]
+          this.chartDataTemp = [...this.tempPerHour]
 
-          this.chartData = [...this.perHour]
-
-          console.log(this.perHour);          
+          console.log(this.chartDataWind);          
+          console.log(
+            this.ss.arrRuleDate.forEach(e=> {
+              console.log(e)
+              console.log('2022-8-11 23:59:'.includes(e));                          
+            })
+            );          
           
           this.loading = false
         },

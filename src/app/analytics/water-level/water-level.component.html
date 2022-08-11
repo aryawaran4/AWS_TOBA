@@ -1,4 +1,5 @@
-<div style="width: 95%; height: 600px;" class="py-6 mx-auto">
+<div style="width: 95%; height: 600px;" class="py-6 mx-auto text-my-blue">
+    <p class="mb-4">Waktu perhitungan : <span class="font-semibold">{{ !!time ? time : '-' }}</span></p>
     <ngx-charts-line-chart  
       *ngIf="urlStatus === true"
       [legend]="legend"
