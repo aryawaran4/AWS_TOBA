@@ -12,6 +12,7 @@ import { MeteorologicalComponent } from './meteorological/meteorological.compone
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatTabsModule} from '@angular/material/tabs';
 
 const routes: Routes = [{ 
   path: '', 
@@ -47,6 +48,7 @@ const routes: Routes = [{
     MatIconModule,
     MatSidenavModule,
     MatProgressSpinnerModule,
+    MatTabsModule,
 
     NgxChartsModule,
   ]

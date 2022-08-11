@@ -16,17 +16,11 @@
     </div>
 </div>
 
-<div class="grid grid-cols-4 gap-6 px-4 relative bottom-10">
+<div class="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-2 gap-6 px-4 relative bottom-10">
     <div class="card bg-white text-my-blue" *ngFor="let card of dashboardCard">
         <div class="px-4 py-6 flex-col">
-            <div class="flex justify-between items-center mb-6">
+            <div class="w-full mb-6">
                 <p class="text-2xl font-light">{{card.label}} <span class="font-semibold text-xs">({{card.unit === 'C' ? '&deg; C' : card.unit}})</span></p>
-                <mat-slide-toggle
-                    class="font-semibold text-xs"
-                    [color]="color"
-                    [checked]="checked"
-                    [disabled]="disabled">
-                </mat-slide-toggle>
             </div>            
             <div class="text-center" *ngIf="urlStatus === true">
                 <div class="w-fit mx-auto py-6"  *ngIf="loading === true"><mat-spinner></mat-spinner></div>
