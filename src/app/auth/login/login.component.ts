@@ -6,6 +6,11 @@ import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
+  styles:[`
+  .bg-waves{
+    background: url("/assets/pattern.svg");
+  }
+  `]
 })
 export class LoginComponent implements OnInit {
 
