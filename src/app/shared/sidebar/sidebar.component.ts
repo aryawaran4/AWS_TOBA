@@ -67,7 +67,7 @@ export class SidebarComponent implements OnInit {
     // this.auth.logOut().subscribe(
     //   res =>{
     //     localStorage.clear();
-    //     this.router.navigate(['/']);
+        this.router.navigate(['/']);
     //   },
     //   err =>{
     //     this.snackbar.openSnackBar("Error something wrong", "close")
