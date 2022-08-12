@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { SnackbarService } from '../snackbar/snackbar.service';
 import { navLinks } from './sidebar-links';
 
@@ -34,11 +34,28 @@ export class SidebarComponent implements OnInit {
     id_aws: new FormControl('')
   })
 
+  urlStatus!: boolean;
+  optInitial = '';
+
   constructor(
     // private auth: AuthService,
     private router:Router,
     private snackbar: SnackbarService
-  ) { }
+  ) { 
+    router.events.subscribe(x => {
+      // only interested in the NavigationEnd type of event
+      if (!(x instanceof NavigationEnd)) {
+        return;
+      }
+
+      if(/^\d+$/.test(this.router.url.slice(-1)) === true){
+        this.urlStatus = true
+      }else{
+        this.urlStatus = false
+        this.optInitial = ''
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.currentUrl = this.router.url

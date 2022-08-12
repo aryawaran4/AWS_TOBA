@@ -11,6 +11,8 @@ export class WaterLevelComponent implements OnInit {
 
   title = 'Water Level Real Time';  
 
+  LegendPosition : any = 'below'
+
   // options
   legend: boolean = true;
   showLabels: boolean = true;

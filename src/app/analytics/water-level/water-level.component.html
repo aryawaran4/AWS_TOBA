@@ -2,6 +2,7 @@
   <p class="mb-4">Waktu perhitungan : <span class="font-semibold">{{ !!time ? time : '-' }}</span></p>
   <p class="text-xl font-semibold" *ngIf="urlStatus === false">Silahkan pilih station...</p>
     <ngx-charts-line-chart  
+      class="pb-6"
       *ngIf="urlStatus === true"
       [legend]="legend"
       [yScaleMax]="20"

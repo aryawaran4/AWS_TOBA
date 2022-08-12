@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { LegendPosition } from '@swimlane/ngx-charts';
 import { TobaDataType } from 'src/app/shared/data.type';
 import { SharedService } from 'src/app/shared/shared.services';
 
@@ -10,6 +11,8 @@ import { SharedService } from 'src/app/shared/shared.services';
 export class MeteorologicalComponent implements OnInit {
 
   titleWindChart = 'Water Level Real Time';  
+
+  LegendPosition : any = 'below'
 
   // options
   legend: boolean = true;
