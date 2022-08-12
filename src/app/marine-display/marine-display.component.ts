@@ -90,7 +90,7 @@ export class MarineDisplayComponent implements OnInit {
           this.loading = false
         },
         err=>{
-          alert(err)
+          alert('error, something went wrong')
           this.loading = false
         }
       )

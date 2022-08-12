@@ -54,7 +54,7 @@ export class AnalyticsComponent implements OnInit {
         this.windCheck = parseFloat(this.lastObj.windspeed)
       },
       err=>{
-        alert(err)
+        alert('error, something went wrong')
       }
       )
    }

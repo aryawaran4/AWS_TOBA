@@ -41,9 +41,9 @@
             </div>            
             <div>
                 <div class="text-center" *ngIf="urlStatus === true">
-                    <div class="w-fit mx-auto py-6"  *ngIf="loading === true"><mat-spinner></mat-spinner></div>
-                    <div class="flex flex-col md:flex-col lg:flex-row gap-4 items-center lg:py-10">                    
-                        <div class="border-2 rounded-full w-64 h-64 font-semibold flex justify-center">
+                    <div class="w-fit mx-auto py-10"  *ngIf="loading === true"><mat-spinner></mat-spinner></div>
+                    <div class="flex flex-col md:flex-col lg:flex-row lg:justify-center gap-4 items-center lg:py-10 "  *ngIf="loading === false">                    
+                        <div class="border-2 rounded-full w-60 h-60 font-semibold flex justify-center">
                             <div class="w-fit h-full flex items-center">
                                 <div>
                                     <p class="pb-4">N</p>
@@ -54,7 +54,7 @@
                                          alt="compas" 
                                          class="w-28 p-6"
                                          [style.transform]="'rotate(' + (windDirection ? windDirection : 0) + 'deg)'"
-                                         *ngIf="loading === false">
+                                         >
                                          <p class="pl-4">E</p>
                                     </div>
                                     <p class="pt-4">S</p>
@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <div>
-                            <p class="text-7xl font-bold py-6" *ngIf="loading === false" >Wind Direction</p>
+                            <p class="text-7xl font-bold py-6" >Wind Direction</p>
                             <p class="bg-my-blue text-white py-3 px-5 rounded-md w-fit mx-auto">{{windDirection}}</p>
                         </div>
                     </div>
