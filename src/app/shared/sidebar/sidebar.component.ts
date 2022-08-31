@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
+import { SharedService } from '../shared.services';
 import { SnackbarService } from '../snackbar/snackbar.service';
 import { navLinks } from './sidebar-links';
 
@@ -40,7 +41,7 @@ export class SidebarComponent implements OnInit {
   constructor(
     // private auth: AuthService,
     private router:Router,
-    private snackbar: SnackbarService
+    private snackbar: SnackbarService,
   ) { 
     router.events.subscribe(x => {
       // only interested in the NavigationEnd type of event
@@ -70,7 +71,7 @@ export class SidebarComponent implements OnInit {
       },
       queryParamsHandling: 'merge',
     });    
-  }
+  }  
 
   getMeInfo(){
     // this.auth.getMe().subscribe(

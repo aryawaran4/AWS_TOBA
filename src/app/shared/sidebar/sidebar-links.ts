@@ -23,7 +23,7 @@ type NavLink = {
     {
       text: 'Export Data',
       icon: 'file_download',
-      href: '/',
+      href: '/export-data',
     }
   ];
   

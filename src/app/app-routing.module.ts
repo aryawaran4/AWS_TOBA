@@ -26,6 +26,11 @@ const routes: Routes = [
     loadChildren: () => import('./analytics/analytics.module').then(m => m.AnalyticsModule),
     // canLoad:[AuthCoreGuard]
   },
+  { 
+    path: 'export-data', 
+    loadChildren: () => import('./export-data/export-data.module').then(m => m.ExportDataModule),
+    // canLoad:[AuthCoreGuard]
+  },
 ];
 
 @NgModule({

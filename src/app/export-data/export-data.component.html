@@ -1,0 +1,38 @@
+<div class="bg-my-blue px-4 pt-6 pb-20">
+    <div class="flex items-center justify-between">
+        <div class="text-white">
+            <p class="text-6xl font-semibold mb-4">Export Data</p>
+            <p>Tanggal perhitungan : <span class="font-semibold">{{ !!startDate ? startDate : '' }}</span> - <span class="font-semibold">{{ !!endDate ? endDate : '' }}</span></p>
+        </div>
+    </div>
+</div>
+<div class="flex flex-col items-center w-full bg-white relative bottom-10">
+    <div class="px-4 py-6 font-medium w-4/5 ">
+        <p class="font-semibold text-2xl mb-6">Petunjuk Download dan Format Time</p>
+        <div class="text-base flex flex-col gap-4">
+            <div>
+                <p>1. Pastikan station list sudah terpilih.</p>
+                <img src="/assets/petunjuk_1.png" alt="petunjuk_1">
+            </div>
+            <p>2. Tekan Tombol Download.</p>
+            <p>3. Buka File .CSV .</p>
+            <div>
+                <p>4. Klik field data <span class="font-semibold">waktu</span>.</p>
+                <img src="/assets/petunjuk_2.png" alt="petunjuk_2">
+            </div>
+            <div>
+                <p>5. Klik field bagian text.</p>
+                <img src="/assets/petunjuk_3.png" alt="petunjuk_2">
+            </div>
+            <div>
+                <p>6. Klik field data <span class="font-semibold">No</span>.</p>
+                <img src="/assets/petunjuk_4.png" alt="petunjuk_2">
+            </div>
+            <div>
+                <p>7. Maka field waktu akan menjadi normal, silahkan download file dibawah ini.</p>
+                <button class="py-2 px-4 w-fit text-lg text-white mt-6 font-semibold bg-my-green rounded-md shadow-md" mat-button (click)="download()">Download</button>
+            </div>
+        </div>
+    </div>
+</div>
+
