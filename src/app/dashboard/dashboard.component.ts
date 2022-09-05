@@ -43,6 +43,7 @@ export class DashboardComponent implements OnInit {
     { label: 'Wind Speed', unit: 'Knot', value :'' }
   ]
 
+  stationName!: string
   rainfall!: string
   airTemp!: string
   humidity!: string
@@ -79,7 +80,18 @@ export class DashboardComponent implements OnInit {
         this.urlStatus = false
       }
 
-      console.log(this.urlStatus);
+      const stationId = this.router.url.split('=')[1]
+      if(stationId === '3000000040'){
+        this.stationName = 'AWS Toba 1-Pel.Ajibata'
+      }else if(stationId === '3000000041'){
+        this.stationName === 'AWS Toba 2-Pel.Ambarita'
+      }else if(stationId === '3000000042'){
+        this.stationName === 'AWS Toba 3-Pel.Simanindo'
+      }else if(stationId === '3000000044'){
+        this.stationName === 'AWS Toba 5-Pel. Sipinggan'
+      }else if(stationId === '3000000045'){
+        this.stationName === 'AWS Toba 6-Pel. Balige'
+      }
       
 
       this.loading = true

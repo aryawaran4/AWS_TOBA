@@ -1,7 +1,7 @@
 <div class="bg-my-blue px-4 pt-6 pb-20">
     <div class="flex items-center justify-between">
         <div class="text-white">
-            <p class="text-6xl font-semibold mb-4">Dashboard</p>
+            <p class="text-6xl font-semibold mb-4">{{stationName}}</p>
             <p>Waktu perhitungan : <span class="font-semibold">{{ !!time ? time : '-' }}</span></p>
         </div>
         <div class="rounded-l-md overflow-hidden flex text-white -mr-4" *ngIf="windCheck > 15" [@enterAnimation]>
