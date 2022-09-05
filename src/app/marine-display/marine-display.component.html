@@ -2,7 +2,10 @@
     <div class="flex items-center justify-between">
         <div class="text-white">
             <p class="text-6xl font-semibold mb-4">Marine Display</p>
-            <p>Waktu perhitungan : <span class="font-semibold">{{ !!time ? time : '-' }}</span></p>
+            <div class="flex gap-8">
+                <p>Nama Stasiun : <span class="font-semibold">{{ !!stationName ? stationName : '-' }}</span></p>
+                <p>Waktu perhitungan : <span class="font-semibold">{{ !!time ? time : '-' }}</span></p>
+            </div>
         </div>
         <div class="rounded-l-md overflow-hidden flex text-white -mr-4" *ngIf="windCheck > 15" [@enterAnimation]>
             <div class="p-4 px-6 bg-my-red bg-opacity-80">
