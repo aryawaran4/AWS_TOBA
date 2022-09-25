@@ -71,7 +71,7 @@ export class WaterLevelComponent implements OnInit {
   waterData: any[] = []
 
   constructor(private ss: SharedService, private router:Router) { 
-    router.events.subscribe(x => {
+    router.events.subscribe((x: any) => {
       // only interested in the NavigationEnd type of event
       if (!(x instanceof NavigationEnd)) {
         return;

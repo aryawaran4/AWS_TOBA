@@ -156,7 +156,7 @@ export class MeteorologicalComponent implements OnInit {
   waterData: any[] = []
 
   constructor(private ss: SharedService, private router:Router) { 
-    router.events.subscribe(x => {
+    router.events.subscribe((x: any) => {
       // only interested in the NavigationEnd type of event
       if (!(x instanceof NavigationEnd)) {
         return;
@@ -178,19 +178,15 @@ export class MeteorologicalComponent implements OnInit {
           this.time = this.lastObj.waktu
           this.windData = res.data         
           this.windData.forEach((e) => {      
-            this.windPerHour[0].series.forEach( (series) => {
-              // this.ss.arrRuleDate.forEach( dateRule => {                
+            this.windPerHour[0].series.forEach( (series) => {           
                 if(e.waktu.includes(series.name)){
                   series.value = parseFloat(e.winddir) 
                 }
-              // } )
             } )
             this.windPerHour[1].series.forEach( (series) => {
-              // this.ss.arrRuleDate.forEach( dateRule => {
                 if(e.waktu.includes(series.name)){
                   series.value = parseFloat(e.windspeed) 
                 }
-              // } )
             } )
           });
 
@@ -213,10 +209,10 @@ export class MeteorologicalComponent implements OnInit {
 
           console.log(this.chartDataWind);          
           console.log(
-            this.ss.arrRuleDate.forEach(e=> {
-              console.log(e)
-              console.log('2022-8-11 23:59:'.includes(e));                          
-            })
+            // this.ss.arrRuleDate.forEach(e=> {
+            //   console.log(e)
+            //   console.log('2022-8-11 23:59:'.includes(e));                          
+            // })
             );          
           
           this.loading = false

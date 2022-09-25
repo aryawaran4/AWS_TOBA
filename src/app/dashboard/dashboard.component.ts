@@ -68,7 +68,7 @@ export class DashboardComponent implements OnInit {
   // })    
 
   constructor(private ss: SharedService, private router:Router) { 
-    router.events.subscribe(x => {
+    router.events.subscribe((x: any) => {
       // only interested in the NavigationEnd type of event
       if (!(x instanceof NavigationEnd)) {
         return;
@@ -81,42 +81,46 @@ export class DashboardComponent implements OnInit {
       }
 
       this.loading = true
-      this.ss.getTobaData().subscribe(
-        res=>{
-          var stationId = res.id_aws
-          if(stationId === '3000000040'){
-            this.stationName = 'AWS Toba 1-Pel.Ajibata'
-          }else if(stationId === '3000000041'){
-            this.stationName = 'AWS Toba 2-Pel.Ambarita'
-          }else if(stationId === '3000000042'){
-            this.stationName = 'AWS Toba 3-Pel.Simanindo'
-          }else if(stationId === '3000000044'){
-            this.stationName = 'AWS Toba 5-Pel. Sipinggan'
-          }else if(stationId === '3000000045'){
-            this.stationName = 'AWS Toba 6-Pel. Balige'
-          } 
-          this.lastObj = res.data[res.data.length - 1]    
-          this.rainfall = this.lastObj.rain
-          this.airTemp = this.lastObj.temp
-          this.humidity = this.lastObj.rh
-          this.windDirection = this.lastObj.winddir
-          this.waterTemp = this.lastObj.watertemp
-          this.waterLvl = this.lastObj.waterlevel
-          this.radiation = this.lastObj.solrad
-          this.windSpeed = this.lastObj.windspeed
-          this.time = this.lastObj.waktu
-          this.windCheck = parseFloat(this.windSpeed)
-          const arrData = [ this.rainfall, this.airTemp, this.humidity, this.windDirection, this.waterTemp, this.waterLvl, this.radiation, this.windSpeed ]
-          this.dashboardCard.forEach((element, i) => {
-            element.value = arrData[i]
-          });
-          this.loading = false
-        },
-        err=>{
-          alert('error, something went wrong')
-          this.loading = false
-        }
-      )
+      if(this.urlStatus === true){
+        this.ss.getTobaLatestData().subscribe(
+          res=>{
+            var stationId = res.id_aws
+            if(stationId === '3000000040'){
+              this.stationName = 'AWS Toba 1-Pel.Ajibata'
+            }else if(stationId === '3000000041'){
+              this.stationName = 'AWS Toba 2-Pel.Ambarita'
+            }else if(stationId === '3000000042'){
+              this.stationName = 'AWS Toba 3-Pel.Simanindo'
+            }else if(stationId === '3000000044'){
+              this.stationName = 'AWS Toba 5-Pel. Sipinggan'
+            }else if(stationId === '3000000045'){
+              this.stationName = 'AWS Toba 6-Pel. Balige'
+            } else{
+              return
+            }
+            this.lastObj = res.data[res.data.length - 1]    
+            this.rainfall = this.lastObj.rain
+            this.airTemp = this.lastObj.temp
+            this.humidity = this.lastObj.rh
+            this.windDirection = this.lastObj.winddir
+            this.waterTemp = this.lastObj.watertemp
+            this.waterLvl = this.lastObj.waterlevel
+            this.radiation = this.lastObj.solrad
+            this.windSpeed = this.lastObj.windspeed
+            this.time = this.lastObj.waktu
+            this.windCheck = parseFloat(this.windSpeed)
+            const arrData = [ this.rainfall, this.airTemp, this.humidity, this.windDirection, this.waterTemp, this.waterLvl, this.radiation, this.windSpeed ]
+            this.dashboardCard.forEach((element, i) => {
+              element.value = arrData[i]
+            });
+            this.loading = false
+          },
+          err=>{
+            alert('error, something went wrong')
+            this.loading = false
+          }
+        )
+      }
       
     });
   }

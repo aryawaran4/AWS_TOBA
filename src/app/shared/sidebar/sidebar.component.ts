@@ -43,7 +43,7 @@ export class SidebarComponent implements OnInit {
     private router:Router,
     private snackbar: SnackbarService,
   ) { 
-    router.events.subscribe(x => {
+    router.events.subscribe((x: any) => {
       // only interested in the NavigationEnd type of event
       if (!(x instanceof NavigationEnd)) {
         return;

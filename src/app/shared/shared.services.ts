@@ -89,6 +89,13 @@ export class SharedService {
         return this.http.post<any>(this.url, formToba.value)
     }
 
+    getTobaLatestData(){
+      let formToba = new FormGroup({
+        id_aws: new FormControl(this.router.url.replace(/\D/g, "")),
+      })                  
+      return this.http.get<any>('http://202.90.199.132/aws-new/data/station/latest/' + formToba.value.id_aws)
+  }
+
     //export data to csv
     downloadFile(data:any, filename='data') {
         let csvData = this.ConvertToCSV(data, 
