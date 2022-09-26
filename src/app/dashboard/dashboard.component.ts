@@ -82,7 +82,7 @@ export class DashboardComponent implements OnInit {
 
       this.loading = true
       if(this.urlStatus === true){
-        this.ss.getTobaLatestData().subscribe(
+        this.ss.getTobaData().subscribe(
           res=>{
             var stationId = res.id_aws
             if(stationId === '3000000040'){

@@ -29,112 +29,24 @@ export class MeteorologicalComponent implements OnInit {
 
   //Collecting data from 03:00 because the data collection at API at 03:00 too
   windPerHour = [
-    {"name" : "Wind Direction",
-    "series" : [
-      {"name" : '03:00:00', "value": 0},
-      {"name" : '04:00:00', "value": 0},
-      {"name" : '05:00:00', "value": 0},
-      {"name" : '06:00:00', "value": 0},
-      {"name" : '07:00:00', "value": 0},
-      {"name" : '08:00:00', "value": 0},
-      {"name" : '09:00:00', "value": 0},
-      {"name" : '10:00:00', "value": 0},
-      {"name" : '11:00:00', "value": 0},
-      {"name" : '12:00:00', "value": 0},
-      {"name" : '13:00:00', "value": 0},
-      {"name" : '14:00:00', "value": 0},
-      {"name" : '15:00:00', "value": 0},
-      {"name" : '16:00:00', "value": 0},
-      {"name" : '17:00:00', "value": 0},
-      {"name" : '18:00:00', "value": 0},
-      {"name" : '19:00:00', "value": 0},
-      {"name" : '20:00:00', "value": 0},
-      {"name" : '21:00:00', "value": 0},
-      {"name" : '22:00:00', "value": 0},
-      {"name" : '23:00:00', "value": 0},
-      {"name" : '23:59:00', "value": 0}
-     ]
+    {
+      "name": "Wind Direction",
+      'series' : [ { "name" : '', 'value': 0.0 } ]
     },
-    {"name" : "Wind Speed",
-    "series" : [
-      {"name" : '03:00:00', "value": 0},
-      {"name" : '04:00:00', "value": 0},
-      {"name" : '05:00:00', "value": 0},
-      {"name" : '06:00:00', "value": 0},
-      {"name" : '07:00:00', "value": 0},
-      {"name" : '08:00:00', "value": 0},
-      {"name" : '09:00:00', "value": 0},
-      {"name" : '10:00:00', "value": 0},
-      {"name" : '11:00:00', "value": 0},
-      {"name" : '12:00:00', "value": 0},
-      {"name" : '13:00:00', "value": 0},
-      {"name" : '14:00:00', "value": 0},
-      {"name" : '15:00:00', "value": 0},
-      {"name" : '16:00:00', "value": 0},
-      {"name" : '17:00:00', "value": 0},
-      {"name" : '18:00:00', "value": 0},
-      {"name" : '19:00:00', "value": 0},
-      {"name" : '20:00:00', "value": 0},
-      {"name" : '21:00:00', "value": 0},
-      {"name" : '22:00:00', "value": 0},
-      {"name" : '23:00:00', "value": 0},
-      {"name" : '23:59:00', "value": 0}
-     ]
+    {
+      "name": "Wind Speed",
+      'series' : [ { "name" : '', 'value': 0.0 } ]
     }
   ]
 
   tempPerHour = [
-    {"name" : "Water Level",
-    "series" : [
-     {"name" : '03:00:00', "value": 0},
-     {"name" : '04:00:00', "value": 0},
-     {"name" : '05:00:00', "value": 0},
-     {"name" : '06:00:00', "value": 0},
-     {"name" : '07:00:00', "value": 0},
-     {"name" : '08:00:00', "value": 0},
-     {"name" : '09:00:00', "value": 0},
-     {"name" : '10:00:00', "value": 0},
-     {"name" : '11:00:00', "value": 0},
-     {"name" : '12:00:00', "value": 0},
-     {"name" : '13:00:00', "value": 0},
-     {"name" : '14:00:00', "value": 0},
-     {"name" : '15:00:00', "value": 0},
-     {"name" : '16:00:00', "value": 0},
-     {"name" : '17:00:00', "value": 0},
-     {"name" : '18:00:00', "value": 0},
-     {"name" : '19:00:00', "value": 0},
-     {"name" : '20:00:00', "value": 0},
-     {"name" : '21:00:00', "value": 0},
-     {"name" : '22:00:00', "value": 0},
-     {"name" : '23:00:00', "value": 0},
-     {"name" : '23:59:00', "value": 0}
-    ]
+    {
+      "name": "Water Level",
+      'series' : [ { "name" : '', 'value': 0.0 } ]
     },
-    {"name" : "Water Temperature",
-    "series" : [
-     {"name" : '03:00:00', "value": 0},
-     {"name" : '04:00:00', "value": 0},
-     {"name" : '05:00:00', "value": 0},
-     {"name" : '06:00:00', "value": 0},
-     {"name" : '07:00:00', "value": 0},
-     {"name" : '08:00:00', "value": 0},
-     {"name" : '09:00:00', "value": 0},
-     {"name" : '10:00:00', "value": 0},
-     {"name" : '11:00:00', "value": 0},
-     {"name" : '12:00:00', "value": 0},
-     {"name" : '13:00:00', "value": 0},
-     {"name" : '14:00:00', "value": 0},
-     {"name" : '15:00:00', "value": 0},
-     {"name" : '16:00:00', "value": 0},
-     {"name" : '17:00:00', "value": 0},
-     {"name" : '18:00:00', "value": 0},
-     {"name" : '19:00:00', "value": 0},
-     {"name" : '20:00:00', "value": 0},
-     {"name" : '21:00:00', "value": 0},
-     {"name" : '22:00:00', "value": 0},
-     {"name" : '23:00:00', "value": 0},
-     {"name" : '23:59:00', "value": 0}
-    ]
+    {
+      "name": "Water Temperature",
+      'series' : [ { "name" : '', 'value': 0.0 } ]
     }
   ]
 
@@ -177,31 +89,29 @@ export class MeteorologicalComponent implements OnInit {
           this.lastObj = res.data[res.data.length - 1] 
           this.time = this.lastObj.waktu
           this.windData = res.data         
-          this.windData.forEach((e) => {      
-            this.windPerHour[0].series.forEach( (series) => {           
-                if(e.waktu.includes(series.name)){
-                  series.value = parseFloat(e.winddir) 
-                }
-            } )
-            this.windPerHour[1].series.forEach( (series) => {
-                if(e.waktu.includes(series.name)){
-                  series.value = parseFloat(e.windspeed) 
-                }
-            } )
+          this.windData.map((e) => {      
+            var windHours = new Date(e.waktu).toTimeString().slice(0, 8)
+            this.windPerHour[0].series.push({
+                name : windHours,
+                value : parseFloat(e.winddir)
+            })
+            this.windPerHour[1].series.push({
+              name : windHours,
+              value : parseFloat(e.windspeed)
+          })
           });
 
           this.tempData = res.data
-          this.tempData.forEach(e => {
-            this.tempPerHour[0].series.forEach( (series) => {
-              if(e.waktu.includes(series.name)){
-                series.value = parseFloat(e.waterlevel) 
-              }
-            } )
-            this.tempPerHour[1].series.forEach( (series) => {
-              if(e.waktu.includes(series.name)){
-                series.value = parseFloat(e.watertemp) 
-              }
-            } )
+          this.tempData.map(e => {
+            var tempHours = new Date(e.waktu).toTimeString().slice(0, 8)
+            this.tempPerHour[0].series.push({
+              name : tempHours,
+              value : parseFloat(e.waterlevel)
+            })
+            this.tempPerHour[1].series.push({
+              name : tempHours,
+              value : parseFloat(e.watertemp)
+            })
           });
 
           this.chartDataWind = [...this.windPerHour]

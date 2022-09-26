@@ -25,33 +25,10 @@ export class WaterLevelComponent implements OnInit {
   yAxisLabel: string = 'Water Level';
   timeline: boolean = true;
 
-  //Collecting data from 03:00 because the data collection at API at 03:00 too
-  perHour = [
-    {"name" : "Water Level",
-    "series" : [
-     {"name" : '03:00:00', "value": 0},
-     {"name" : '04:00:00', "value": 0},
-     {"name" : '05:00:00', "value": 0},
-     {"name" : '06:00:00', "value": 0},
-     {"name" : '07:00:00', "value": 0},
-     {"name" : '08:00:00', "value": 0},
-     {"name" : '09:00:00', "value": 0},
-     {"name" : '10:00:00', "value": 0},
-     {"name" : '11:00:00', "value": 0},
-     {"name" : '12:00:00', "value": 0},
-     {"name" : '13:00:00', "value": 0},
-     {"name" : '14:00:00', "value": 0},
-     {"name" : '15:00:00', "value": 0},
-     {"name" : '16:00:00', "value": 0},
-     {"name" : '17:00:00', "value": 0},
-     {"name" : '18:00:00', "value": 0},
-     {"name" : '19:00:00', "value": 0},
-     {"name" : '20:00:00', "value": 0},
-     {"name" : '21:00:00', "value": 0},
-     {"name" : '22:00:00', "value": 0},
-     {"name" : '23:00:00', "value": 0},
-     {"name" : '23:59:00', "value": 0}
-    ]
+  perHours = [
+    {
+      "name": "Water Level",
+      'series' : [ { "name" : '', 'value': 0.0 } ]
     }
   ]
 
@@ -92,22 +69,32 @@ export class WaterLevelComponent implements OnInit {
           this.lastObj = res.data[res.data.length - 1] 
           this.time = this.lastObj.waktu
           this.waterLvlData = res.data          
-          this.waterLvlData.forEach(e => {
-            this.perHour[0].series.forEach( (series) => {
-              if(e.waktu.includes(series.name)){
-                series.value = parseFloat(e.waterlevel) 
-              }
-            } )
-          });
+
+          var test = res.data
+          test.map( (e: { waktu: any; waterlevel:any }) => {
+            var waterHours = new Date(e.waktu).toTimeString().slice(0, 8)
+            this.perHours[0].series.push({
+              name : waterHours,
+              value : e.waterlevel
+            })
+          })          
+
+          // this.waterLvlData.forEach(e => {
+          //   this.perHour[0].series.forEach( (series) => {
+          //     if(e.waktu.includes(series.name)){
+          //       series.value = parseFloat(e.waterlevel) 
+          //     }
+          //   } )
+          // });
 
           // this.perHour.forEach( (Obj, i) => {
           //   let arrData = Object.values(Obj)
           //   this.waterData.push(arrData)
           // })
 
-          this.chartData = [...this.perHour]
+          this.chartData = [...this.perHours]
 
-          console.log(this.perHour);          
+          // console.log(this.perHours);          
           
           this.loading = false
         },

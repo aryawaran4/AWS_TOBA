@@ -72,7 +72,7 @@ export class MarineDisplayComponent implements OnInit {
       
       this.loading = true
       if(this.urlStatus === true){
-        this.ss.getTobaLatestData().subscribe(
+        this.ss.getTobaData().subscribe(
           res=>{
             var stationId = res.id_aws
             if(stationId === '3000000040'){
@@ -85,7 +85,9 @@ export class MarineDisplayComponent implements OnInit {
               this.stationName = 'AWS Toba 5-Pel. Sipinggan'
             }else if(stationId === '3000000045'){
               this.stationName = 'AWS Toba 6-Pel. Balige'
-            } 
+            } else {
+              return
+            }
             this.lastObj = res.data[res.data.length - 1]    
             this.rainfall = this.lastObj.rain
             this.airTemp = this.lastObj.temp
