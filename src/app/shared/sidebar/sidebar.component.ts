@@ -38,8 +38,11 @@ export class SidebarComponent implements OnInit {
   urlStatus!: boolean;
   optInitial = '';
 
+  defaultStation!: string
+  previousUrl!: string
+
   constructor(
-    // private auth: AuthService,
+    private ss: SharedService,
     private router:Router,
     private snackbar: SnackbarService,
   ) { 
@@ -55,6 +58,17 @@ export class SidebarComponent implements OnInit {
         this.urlStatus = false
         this.optInitial = ''
       }
+
+      if(this.urlStatus === true){
+        this.ss.getTobaData().subscribe(
+          res=>{
+            this.defaultStation = res.id_aws          
+          },
+          err=>{
+            alert('error, something went wrong')
+          }
+        )
+      }
     });
   }
 
@@ -62,6 +76,14 @@ export class SidebarComponent implements OnInit {
     this.currentUrl = this.router.url
     
     this.getMeInfo();
+  }
+
+  newPageWithParam(url:string){
+    if(this.defaultStation !== undefined){
+      this.router.navigate([url],{queryParams: {id: this.defaultStation }})
+    }else if(this.defaultStation === undefined){
+      this.router.navigate([url])
+    }
   }
 
   appendParamsUrl(){

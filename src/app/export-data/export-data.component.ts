@@ -16,6 +16,8 @@ export class ExportDataComponent implements OnInit {
   urlStatus!: boolean;
   loading: boolean = false
 
+  stationName!: string
+
   windSpeed!: string  
   time!: string
 
@@ -40,7 +42,30 @@ export class ExportDataComponent implements OnInit {
         this.urlStatus = false
       }
 
-      console.log(this.urlStatus);
+      if(this.urlStatus === true){
+        this.ss.getTobaData().subscribe(
+          res=>{
+            var stationId = res.id_aws
+            if(stationId === '3000000040'){
+              this.stationName = 'AWS Toba 1-Pel.Ajibata'
+            }else if(stationId === '3000000041'){
+              this.stationName = 'AWS Toba 2-Pel.Ambarita'
+            }else if(stationId === '3000000042'){
+              this.stationName = 'AWS Toba 3-Pel.Simanindo'
+            }else if(stationId === '3000000044'){
+              this.stationName = 'AWS Toba 5-Pel. Sipinggan'
+            }else if(stationId === '3000000045'){
+              this.stationName = 'AWS Toba 6-Pel. Balige'
+            } else {
+              return
+            }
+          },
+          err=>{
+            alert('error, something went wrong')
+            this.loading = false
+          }
+        )
+      }
       
 
       this.loading = true

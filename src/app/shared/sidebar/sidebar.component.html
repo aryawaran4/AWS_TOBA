@@ -28,7 +28,7 @@
         <a
           *ngFor="let link of links"
           mat-button
-          [routerLink]="link.href"
+          (click)='newPageWithParam(link.href)'
           [title]="link.text"
           [ngStyle]="
             link.href === currentUrl
@@ -90,7 +90,7 @@
         <form [formGroup]="stationFilter" class="text-xs relative top-1.5 flex items-center gap-2">
           <p class="relative bottom-1"><mat-icon>map</mat-icon></p>
           <mat-form-field appearance="outline">
-            <mat-select placeholder="Station List" formControlName="id_aws" class="text-my-blue" (selectionChange)="appendParamsUrl()" [(ngModel)]="optInitial">
+            <mat-select placeholder="Station List" [(value)]="defaultStation" formControlName="id_aws" class="text-my-blue" (selectionChange)="appendParamsUrl()" [(ngModel)]="optInitial">
               <mat-option value="" *ngIf="urlStatus === false">Station List</mat-option>
               <mat-option value="3000000040">AWS Toba 1-Pel.Ajibata</mat-option>
               <mat-option value="3000000041">AWS Toba 2-Pel.Ambarita</mat-option>
