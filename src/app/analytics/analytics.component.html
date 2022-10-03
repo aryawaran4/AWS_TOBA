@@ -32,7 +32,7 @@
     <nav mat-tab-nav-bar class="bg-white -mx-4">
       <a mat-tab-link
       *ngFor="let link of navLinks"
-      [routerLink]="link.link"
+      (click)='newPageWithParam(link.link)'
       routerLinkActive #rla="routerLinkActive"
       [active]="rla.isActive">
      {{link.label}}

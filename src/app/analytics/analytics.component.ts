@@ -1,6 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { TobaDataType } from '../shared/data.type';
 import { SharedService } from '../shared/shared.services';
 
@@ -30,23 +30,51 @@ export class AnalyticsComponent implements OnInit {
   navLinks: any[];
   activeLinkIndex = -1;
 
-
+  urlStatus!: boolean;
+  optInitial = '';
+  defaultStation!: string
+  previousUrl!: string
   constructor(private ss: SharedService, private router: Router) {
     this.navLinks = [
       {
           label: 'Station Info',
-          link: './station-info',
+          link: '/analytics/station-info',
           index: 0
       }, {
           label: 'Water Level',
-          link: './water-level',
+          link: '/analytics/water-level',
           index: 1
       }, {
           label: 'Meteorological Obs',
-          link: './meteorological-obs',
+          link: '/analytics/meteorological-obs',
           index: 2
       }, 
   ];
+
+  router.events.subscribe((x: any) => {
+    // only interested in the NavigationEnd type of event
+    if (!(x instanceof NavigationEnd)) {
+      return;
+    }
+
+    if(/^\d+$/.test(this.router.url.slice(-1)) === true){
+      this.urlStatus = true
+    }else{
+      this.urlStatus = false
+      this.optInitial = ''
+    }
+
+    if(this.urlStatus === true){
+      this.ss.getTobaData().subscribe(
+        res=>{
+          this.defaultStation = res.id_aws          
+        },
+        err=>{
+          alert('error, something went wrong')
+        }
+      )
+    }
+  });
 
     this.ss.getTobaData().subscribe(
       res=>{
@@ -63,6 +91,14 @@ export class AnalyticsComponent implements OnInit {
   this.router.events.subscribe((res) => {
       this.activeLinkIndex = this.navLinks.indexOf(this.navLinks.find(tab => tab.link === '.' + this.router.url));
   });
+  }
+
+  newPageWithParam(url:string){
+    if(this.defaultStation !== undefined){
+      this.router.navigate([url],{queryParams: {id: this.defaultStation }})
+    }else if(this.defaultStation === undefined){
+      this.router.navigate([url])
+    }
   }
 
 }
