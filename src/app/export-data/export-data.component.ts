@@ -47,15 +47,15 @@ export class ExportDataComponent implements OnInit {
           res=>{
             var stationId = res.id_aws
             if(stationId === '3000000040'){
-              this.stationName = 'AWS Toba 1-Pel.Ajibata'
+              this.stationName = 'AWS-Pel.Ajibata'
             }else if(stationId === '3000000041'){
-              this.stationName = 'AWS Toba 2-Pel.Ambarita'
+              this.stationName = 'AWS-Pel.Ambarita'
             }else if(stationId === '3000000042'){
-              this.stationName = 'AWS Toba 3-Pel.Simanindo'
+              this.stationName = 'AWS-Pel.Simanindo'
             }else if(stationId === '3000000044'){
-              this.stationName = 'AWS Toba 5-Pel. Sipinggan'
+              this.stationName = 'AWS-Pel. Sipinggan'
             }else if(stationId === '3000000045'){
-              this.stationName = 'AWS Toba 6-Pel. Balige'
+              this.stationName = 'AWS-Pel. Balige'
             } else {
               return
             }

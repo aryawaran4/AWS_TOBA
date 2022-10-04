@@ -37,9 +37,9 @@ export class DashboardComponent implements OnInit {
     { label: 'Air Temp', unit: 'C', value :''},
     { label: 'Humidity', unit: '%', value :''},
     { label: 'Wind Direction', unit: 'degrees', value :''},
-    { label: 'Water Temp', unit: 'C', value :''},
+    // { label: 'Water Temp', unit: 'C', value :''},
     { label: 'Water Level', unit: 'm' , value :''},
-    { label: 'Radiation', unit: 'W/m' , value :''},
+    // { label: 'Radiation', unit: 'W/m' , value :''},
     { label: 'Wind Speed', unit: 'Knot', value :'' }
   ]
 
@@ -48,9 +48,9 @@ export class DashboardComponent implements OnInit {
   airTemp!: string
   humidity!: string
   windDirection!: string
-  waterTemp!: string
+  // waterTemp!: string
   waterLvl!: string
-  radiation!: string
+  // radiation!: string
   windSpeed!: string  
   time!: string
 
@@ -86,15 +86,15 @@ export class DashboardComponent implements OnInit {
           res=>{
             var stationId = res.id_aws
             if(stationId === '3000000040'){
-              this.stationName = 'AWS Toba 1-Pel.Ajibata'
+              this.stationName = 'AWS-Pel.Ajibata'
             }else if(stationId === '3000000041'){
-              this.stationName = 'AWS Toba 2-Pel.Ambarita'
+              this.stationName = 'AWS-Pel.Ambarita'
             }else if(stationId === '3000000042'){
-              this.stationName = 'AWS Toba 3-Pel.Simanindo'
+              this.stationName = 'AWS-Pel.Simanindo'
             }else if(stationId === '3000000044'){
-              this.stationName = 'AWS Toba 5-Pel. Sipinggan'
+              this.stationName = 'AWS-Pel. Sipinggan'
             }else if(stationId === '3000000045'){
-              this.stationName = 'AWS Toba 6-Pel. Balige'
+              this.stationName = 'AWS-Pel. Balige'
             } else{
               return
             }
@@ -103,13 +103,13 @@ export class DashboardComponent implements OnInit {
             this.airTemp = this.lastObj.temp
             this.humidity = this.lastObj.rh
             this.windDirection = this.lastObj.winddir
-            this.waterTemp = this.lastObj.watertemp
+            // this.waterTemp = this.lastObj.watertemp
             this.waterLvl = this.lastObj.waterlevel
-            this.radiation = this.lastObj.solrad
+            // this.radiation = this.lastObj.solrad
             this.windSpeed = this.lastObj.windspeed
             this.time = this.lastObj.waktu
             this.windCheck = parseFloat(this.windSpeed)
-            const arrData = [ this.rainfall, this.airTemp, this.humidity, this.windDirection, this.waterTemp, this.waterLvl, this.radiation, this.windSpeed ]
+            const arrData = [ this.rainfall, this.airTemp, this.humidity, this.windDirection, this.waterLvl, this.windSpeed ]
             this.dashboardCard.forEach((element, i) => {
               element.value = arrData[i]
             });
