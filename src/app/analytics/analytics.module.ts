@@ -11,6 +11,7 @@ import { WaterLevelComponent } from './water-level/water-level.component';
 import { MeteorologicalComponent } from './meteorological/meteorological.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { AgmCoreModule } from '@agm/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -50,6 +51,7 @@ const routes: Routes = [{
     MatSidenavModule,
     MatProgressSpinnerModule,
     MatTabsModule,
+    MatProgressBarModule,
 
     NgxChartsModule,
     AgmCoreModule.forRoot({

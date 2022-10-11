@@ -1,37 +1,39 @@
-<div class="p-4 text-my-blue" style="height: 700px;">
+<mat-progress-bar mode="indeterminate" *ngIf="loading === true"></mat-progress-bar>
+<div class="p-4 text-my-blue h-fit w-11/12 absolute top-16">
     <p class="text-2xl font-semibold mb-4">{{stationName}}</p>
     <div class="w-full flex flex-col md:flex-row gap-10">
         <div class="flex flex-col w-full md:w-1/2 gap-4">            
-            <div>
-                <p class="font-semibold">Data Provider</p>
-                <div class="w-14 h-auto p-2 bg-white rounded-md">
-                    <img class="w-full h-full" src="/assets/Logo-BMKG-new.png" alt="logo">
-                </div>
+            <p class="font-semibold mb-4">Device Location</p>
+            <div>                
                 <div class="-mt-2">
-                            <agm-map
-                            class="h-96"
-                            [zoom]="20"
-                            [latitude]="coordinate[0]"
-                            [longitude]="coordinate[1]"
-                            >
-                                <agm-marker
-                                [latitude]="coordinate[0]"
-                                [longitude]="coordinate[1]"
-                                ></agm-marker>
-                            </agm-map>            
-                        </div>
+                    <agm-map
+                    class="h-96"
+                    [zoom]="10"
+                    [latitude]="coordinate[0]"
+                    [longitude]="coordinate[1]"
+                    >
+                        <agm-marker
+                        [latitude]="coordinate[0]"
+                        [longitude]="coordinate[1]"
+                        ></agm-marker>
+                    </agm-map>            
+                </div>
             </div>
         </div>
         <div class="flex flex-col w-full md:w-1/2 gap-4">
             <div>
-                <p class="font-semibold">Device Description</p>
-                <div class="font-light pl-4">
+                <p class="font-semibold mb-4">Device Description</p>
+                <div class="font-light pl-4 flex flex-col gap-2">
                     <div 
                         class="flex justify-between" 
                         *ngFor="let label of stationInfo"> 
                         <p>{{label.name}}</p> 
                         <p>{{label.value}}</p> 
                     </div>                
+                </div>
+                <p class="font-semibold my-4">Data Provider</p>
+                <div class="w-14 h-auto p-2 bg-white rounded-md">
+                    <img class="w-full h-full" src="/assets/Logo-BMKG-new.png" alt="logo">
                 </div>
             </div>
             <!-- <div>

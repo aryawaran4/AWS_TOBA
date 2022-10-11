@@ -8,6 +8,16 @@ export const Balige = [
     { name: 'Datum', value: '3.9 m' },
 ]
 
+export const Ambarita = [
+    { name: 'Name', value: 'no data' },
+    { name: 'Network ID', value: 'no data' },
+    { name: 'Station Type', value: 'no data' },
+    { name: 'Lat/Lon', value: 'no data / no data' },
+    { name: 'Location', value: 'no data' },
+    { name: 'Call Sign', value: 'no data' },
+    { name: 'Datum', value: 'no data' },
+]
+
 export const Sipinggan = [
     { name: 'Name', value: 'AWS10001' },
     { name: 'Network ID', value: '3000000044' },

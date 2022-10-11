@@ -1,4 +1,5 @@
-<div style="width: 95%; height: 600px;" class="py-6 mx-auto text-my-blue flex flex-col gap-4"> 
+<mat-progress-bar mode="indeterminate" *ngIf="loading === true"></mat-progress-bar>
+<div style="width: 95%; height: 600px;" class="py-6 mx-auto text-my-blue flex flex-col gap-4 absolute top-16"> 
     <div>
       <p class="mb-4">Waktu perhitungan : <span class="font-semibold">{{ !!time ? time : '-' }}</span></p>
       <p class="text-xl font-semibold" *ngIf="urlStatus === false">Silahkan pilih station...</p>

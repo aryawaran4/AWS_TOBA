@@ -1,17 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { SharedService } from 'src/app/shared/shared.services';
-import { Ajibata, Balige, Simanindo, Sipinggan } from './station-info.type';
+import { Ajibata, Ambarita, Balige, Simanindo, Sipinggan } from './station-info.type';
 
-// const ActivityReport = [
-//   { name: 'Sampling Period', value: '60 second(s)' },
-//   { name: 'Last Data', value: '2021-12-13 04:30:35' },
-//   { name: 'Received', value: '2021-12-13 04:31:27' },
-//   { name: 'Data Latency', value: '1.47 minutes' },
-//   { name: 'Feed Latency', value: '16.69 seconds' },
-//   { name: 'Diff.', value: '52.0 seconds' },
-//   { name: 'Reported', value: '2021-12-13 04:32:03' },
-// ]
 
 @Component({
   selector: 'app-station-info',
@@ -23,6 +14,7 @@ export class StationInfoComponent implements OnInit {
   sipinggan = Sipinggan
   simanindo = Simanindo
   ajibata = Ajibata
+  ambarita = Ambarita
 
   stationInfo: any
   stationName!: string
@@ -55,25 +47,27 @@ export class StationInfoComponent implements OnInit {
             if(stationId === '3000000040'){
               this.stationName = 'AWS-Pel.Ajibata'
               this.stationInfo = this.ajibata
-              console.log(this.stationInfo);
-              
+              this.coordinate = [2.65944444444444, 98.933333333333]
             }else if(stationId === '3000000041'){
               this.stationName = 'AWS-Pel.Ambarita'
+              this.stationInfo = this.ambarita
+              this.coordinate = [0,0]
             }else if(stationId === '3000000042'){
               this.stationName = 'AWS-Pel.Simanindo'
               this.stationInfo = this.simanindo
-              console.log(this.stationInfo);
+              this.coordinate = [2.7544444444444, 98.745555555556]
             }else if(stationId === '3000000044'){
               this.stationName = 'AWS-Pel. Sipinggan'
               this.stationInfo = this.sipinggan
-              console.log(this.stationInfo);
+              this.coordinate = [2.4346111111111, 98.898055555555555556]
             }else if(stationId === '3000000045'){
               this.stationName = 'AWS-Pel. Balige'
               this.stationInfo = this.balige
-              console.log(this.stationInfo);
+              this.coordinate = [2.3775, 99.06222222222]
             } else {
               return
             }
+            this.loading = false
           },
           err=>{
             alert('error, something went wrong')
