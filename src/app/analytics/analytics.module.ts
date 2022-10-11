@@ -9,10 +9,11 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { StationInfoComponent } from './station-info/station-info.component';
 import { WaterLevelComponent } from './water-level/water-level.component';
 import { MeteorologicalComponent } from './meteorological/meteorological.component';
-
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatTabsModule} from '@angular/material/tabs';
+
+import { AgmCoreModule } from '@agm/core';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 const routes: Routes = [{ 
   path: '', 
@@ -51,6 +52,9 @@ const routes: Routes = [{
     MatTabsModule,
 
     NgxChartsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDUV2cp-xYLzP67rob5YF-mVSyWNnTtG40'
+    })
   ]
 })
 export class AnalyticsModule { }

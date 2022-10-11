@@ -1,19 +1,40 @@
 <div class="p-4 text-my-blue" style="height: 700px;">
-    <p class="text-2xl font-semibold mb-4">WL.AWS10002</p>
+    <p class="text-2xl font-semibold mb-4">{{stationName}}</p>
     <div class="w-full flex flex-col md:flex-row gap-10">
+        <div class="flex flex-col w-full md:w-1/2 gap-4">            
+            <div>
+                <p class="font-semibold">Data Provider</p>
+                <div class="w-14 h-auto p-2 bg-white rounded-md">
+                    <img class="w-full h-full" src="/assets/Logo-BMKG-new.png" alt="logo">
+                </div>
+                <div class="-mt-2">
+                            <agm-map
+                            class="h-96"
+                            [zoom]="20"
+                            [latitude]="coordinate[0]"
+                            [longitude]="coordinate[1]"
+                            >
+                                <agm-marker
+                                [latitude]="coordinate[0]"
+                                [longitude]="coordinate[1]"
+                                ></agm-marker>
+                            </agm-map>            
+                        </div>
+            </div>
+        </div>
         <div class="flex flex-col w-full md:w-1/2 gap-4">
             <div>
                 <p class="font-semibold">Device Description</p>
                 <div class="font-light pl-4">
                     <div 
                         class="flex justify-between" 
-                        *ngFor="let label of deviceDescription"> 
+                        *ngFor="let label of stationInfo"> 
                         <p>{{label.name}}</p> 
                         <p>{{label.value}}</p> 
                     </div>                
                 </div>
             </div>
-            <div>
+            <!-- <div>
                 <p class="font-semibold">Device Description</p>
                 <div class="font-light pl-4">
                     <div 
@@ -33,19 +54,7 @@
                         <p>Battery: -V</p> 
                     </div>                
                 </div>
-            </div>
-        </div>
-
-        <div class="flex flex-col w-full md:w-1/2 gap-4">
-            <div>
-                <p class="font-semibold">Location Map</p>
-            </div>
-            <div>
-                <p class="font-semibold">Data Provider</p>
-                <div class="w-14 h-auto p-2 bg-white rounded-md">
-                    <img class="w-full h-full" src="/assets/Logo-BMKG-new.png" alt="logo">
-                </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
